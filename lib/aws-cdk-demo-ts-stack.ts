@@ -5,11 +5,13 @@ import * as sqs from 'aws-cdk-lib/aws-sqs';
 import { Construct } from 'constructs';
 
 export class AwsCdkDemoTsStack extends Stack {
+
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     const queue = new sqs.Queue(this, 'AwsCdkDemoTsQueue', {
-      visibilityTimeout: Duration.seconds(300)
+      visibilityTimeout: Duration.seconds(300),
+      queueName: `test`
     });
 
     const topic = new sns.Topic(this, 'AwsCdkDemoTsTopic');
