@@ -15,3 +15,5 @@ cdk.out
 
 ### VS Code ###
 .vscode/
+
+cdk.context.json
