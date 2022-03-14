@@ -18,16 +18,13 @@ export class AwsCdkDemoTsStack extends Stack {
             blockPublicAccess: BlockPublicAccess.BLOCK_ALL
         });
 
-        const bucketDemo2 = new s3.Bucket(this, 'AwsCdkDemoTsBucket2', {});
-
         const iamGroup = new iam.Group(this, 'AwsCdkDemoTsIAMGroup');
 
+        const bucketDemo2 = new s3.Bucket(this, 'AwsCdkDemoTsBucket2', {});
         new CfnOutput(this, 'AwsCdkDemoTsBucketoOutput', {
             value: bucketDemo2.bucketName,
             description:  'Bucket2 name',
             exportName: 'AwsCdkDemoTsBucket2Name'
         });
-
-
     }
 }
