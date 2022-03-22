@@ -1,5 +1,5 @@
-import {Duration, Stack, StackProps} from 'aws-cdk-lib';
-import {Construct} from 'constructs';
+import { Duration, Stack, StackProps } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as sns from "aws-cdk-lib/aws-sns";
 import * as subs from "aws-cdk-lib/aws-sns-subscriptions";

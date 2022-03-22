@@ -28,6 +28,12 @@
     "@aws-cdk/core:target-partitions": [
       "aws",
       "aws-cn"
-    ]
+    ],
+    "dev": {
+      "region": "us-east-2"
+    },
+    "prod": {
+      "region": "us-east-1"
+    }
   }
 }
