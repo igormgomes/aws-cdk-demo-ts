@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
-import { Stack, Tags } from 'aws-cdk-lib';
+import { Tags } from 'aws-cdk-lib';
 import { AwsCdkDemoTsStack } from '../lib/aws-cdk-demo-ts-stack';
 import { AwsCdkDemoTsStackCustomVpc } from '../lib/aws-cdk-demo-ts-stack-custom-vpc';
 import { AwsCdkDemoTsStackProfile } from '../lib/aws-cdk-demo-ts-stack-profile';
+import { AwsCdkDemoTsStackSecret } from '../lib/aws-cdk-demo-ts-stack-secret';
 import { AwsCdkDemoTsStackSns } from "../lib/aws-cdk-demo-ts-stack-sns";
 
 const app = new cdk.App();
@@ -40,6 +41,13 @@ new AwsCdkDemoTsStackCustomVpc(app, 'AwsCdkDemoTsStackCustomVpc', {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: app.node.tryGetContext('envs').prod.region
+    }
+});
+
+new AwsCdkDemoTsStackSecret(app, 'AwsCdkDemoTsStackSecret', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
     }
 });
 
