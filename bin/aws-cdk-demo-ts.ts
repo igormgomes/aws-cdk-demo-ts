@@ -3,6 +3,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Tags } from 'aws-cdk-lib';
 import { AwsCdkDemoTsStack } from '../lib/aws-cdk-demo-ts-stack';
 import { AwsCdkDemoTsStackCustomVpc } from '../lib/aws-cdk-demo-ts-stack-custom-vpc';
+import { AwsCdkDemoTsStackIAM } from '../lib/aws-cdk-demo-ts-stack-iam';
 import { AwsCdkDemoTsStackProfile } from '../lib/aws-cdk-demo-ts-stack-profile';
 import { AwsCdkDemoTsStackSecret } from '../lib/aws-cdk-demo-ts-stack-secret';
 import { AwsCdkDemoTsStackSns } from "../lib/aws-cdk-demo-ts-stack-sns";
@@ -45,6 +46,14 @@ new AwsCdkDemoTsStackCustomVpc(app, 'AwsCdkDemoTsStackCustomVpc', {
 });
 
 new AwsCdkDemoTsStackSecret(app, 'AwsCdkDemoTsStackSecret', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
+
+
+new AwsCdkDemoTsStackIAM(app, 'AwsCdkDemoTsStackIAM', {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: process.env.CDK_DEFAULT_REGION
