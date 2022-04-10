@@ -85,7 +85,7 @@ export class AwsCdkDemoTsStackIAM extends Stack {
 
         new CfnOutput(this, 'AwsCdkDemoTsStackIAMLogin', {
             description: 'LoginUrl for user2',
-            value: 'http://'.concat(Stack.of(this).account ).concat('.signin.aws.amazon.com/console')
+            value: 'http://'.concat(Stack.of(this).account).concat('.signin.aws.amazon.com/console')
         })
     }
 }
