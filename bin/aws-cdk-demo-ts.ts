@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
 import { Tags } from 'aws-cdk-lib';
-import { AwsCdkDemoTsStack } from '../lib/aws-cdk-demo-ts-stack';
-import { AwsCdkDemoTsStackCustomVpc } from '../lib/aws-cdk-demo-ts-stack-custom-vpc';
-import { AwsCdkDemoTsStackIAM } from '../lib/aws-cdk-demo-ts-stack-iam';
-import { AwsCdkDemoTsStackPolicy } from '../lib/aws-cdk-demo-ts-stack-policy';
-import { AwsCdkDemoTsStackProfile } from '../lib/aws-cdk-demo-ts-stack-profile';
-import { AwsCdkDemoTsStackSecret } from '../lib/aws-cdk-demo-ts-stack-secret';
-import { AwsCdkDemoTsStackSns } from "../lib/aws-cdk-demo-ts-stack-sns";
+import { AwsCdkDemoTsStack } from '../lib/others/aws-cdk-demo-ts-stack';
+import { AwsCdkDemoTsStackCustomVpc } from '../lib/others/aws-cdk-demo-ts-stack-custom-vpc';
+import { AwsCdkDemoTsStackIAM } from '../lib/iam/aws-cdk-demo-ts-stack-iam';
+import { AwsCdkDemoTsStackPolicy } from '../lib/policy/aws-cdk-demo-ts-stack-policy';
+import { AwsCdkDemoTsStackProfile } from '../lib/profile/aws-cdk-demo-ts-stack-profile';
+import { AwsCdkDemoTsStackSecret } from '../lib/secret/aws-cdk-demo-ts-stack-secret';
+import { AwsCdkDemoTsStackSns } from "../lib/snssqs/aws-cdk-demo-ts-stack-sns";
 import { AwsCdkDemoTsStackDbbRd } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-rds';
 import { AwsCdkDemoTsStackDbVpc } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-vpc';
 import { AwsCdkDemoTsStackDbWebServer } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-web-server';

@@ -2,7 +2,7 @@ import { aws_iam, CfnOutput, SecretValue, Stack, StackProps } from 'aws-cdk-lib'
 import { Construct } from 'constructs';
 import { ParameterTier, StringParameter } from 'aws-cdk-lib/aws-ssm';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
-import { Effect, Group, ManagedPolicy, Policy, PolicyDocument, PolicyStatement, Role, User } from 'aws-cdk-lib/aws-iam';
+import { Effect, Group, ManagedPolicy, PolicyStatement, Role, User } from 'aws-cdk-lib/aws-iam';
 
 export class AwsCdkDemoTsStackIAM extends Stack {
 
@@ -14,7 +14,7 @@ export class AwsCdkDemoTsStackIAM extends Stack {
             secretName: 'user1_pass'
         })
 
-        const user1 = new User(this, 'AwsCdkDemoTsStackIAMUser1', {
+        const user1 = new User(this, 'AwsCdkDemoTsStackIAMUsser1', {
             password: user1Pass.secretValue,
             userName: 'user1'
         })

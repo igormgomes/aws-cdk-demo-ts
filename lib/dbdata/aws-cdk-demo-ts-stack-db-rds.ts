@@ -17,9 +17,19 @@ export class AwsCdkDemoTsStackDbbRd extends Stack {
             throw 'Invalid ISecurityGroup'
         }
 
-        const secretValue = SecretValue.plainText('donotdoit')
-        const credentials = Credentials.fromPassword('mofi', secretValue)
+        const secret = new Secret(this, 'AwsCdkDemoTsStackDbbRdSecret', {
+            description: 'Template secret for user',
+            secretName: 'konstonedbsecret',
+            generateSecretString: {
+                secretStringTemplate: JSON.stringify({"username": "mofi"}),
+                generateStringKey: 'password',
+                excludeCharacters: " %+~`&*()|[]{}:;<>?!'/@\"\\"
+            },
+            removalPolicy: RemovalPolicy.DESTROY
+        })
 
+        const credentials = Credentials.fromSecret(secret, 'mofi')
+        
         const database = new DatabaseInstance(this, 'AwsCdkDemoTsStackDbVpcRDS', {
             credentials: credentials,
             databaseName: 'konstonedb',

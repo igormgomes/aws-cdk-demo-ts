@@ -1,8 +1,6 @@
-import { aws_iam, CfnOutput, RemovalPolicy, SecretValue, Stack, StackProps } from 'aws-cdk-lib';
+import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { ParameterTier, StringParameter } from 'aws-cdk-lib/aws-ssm';
-import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
-import { AnyPrincipal, Effect, Group, ManagedPolicy, Policy, PolicyDocument, PolicyStatement, Role, User } from 'aws-cdk-lib/aws-iam';
+import { AnyPrincipal, Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 
 export class AwsCdkDemoTsStackPolicy extends Stack {
