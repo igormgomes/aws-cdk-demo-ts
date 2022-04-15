@@ -1,7 +1,8 @@
-import { CfnOutput, Duration, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
+import { CfnOutput, Duration, RemovalPolicy, SecretValue, Stack, StackProps } from 'aws-cdk-lib';
 import { InstanceClass, InstanceSize, InstanceType, ISecurityGroup, IVpc } from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
 import { Credentials, DatabaseInstance, DatabaseInstanceEngine } from 'aws-cdk-lib/aws-rds';
+import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 
 export class AwsCdkDemoTsStackDbbRd extends Stack {
 
@@ -16,7 +17,8 @@ export class AwsCdkDemoTsStackDbbRd extends Stack {
             throw 'Invalid ISecurityGroup'
         }
 
-        const credentials = Credentials.fromGeneratedSecret('mofizin')
+        const secretValue = SecretValue.plainText('donotdoit')
+        const credentials = Credentials.fromPassword('mofi', secretValue)
 
         const database = new DatabaseInstance(this, 'AwsCdkDemoTsStackDbVpcRDS', {
             credentials: credentials,
@@ -39,7 +41,7 @@ export class AwsCdkDemoTsStackDbbRd extends Stack {
         }
 
         new CfnOutput(this, 'DatabaseCommand', {
-            value: 'mysql -h '.concat(database.dbInstanceEndpointAddress).concat('-P 3306 -u ').concat(credentials.username).concat('-p ') + credentials.password?.toJSON,
+            value: 'mysql -h '.concat(database.dbInstanceEndpointAddress).concat(' -P 3306 -u ').concat(credentials.username).concat(' -p'),
             description: 'connect to the database'
         })
     }
