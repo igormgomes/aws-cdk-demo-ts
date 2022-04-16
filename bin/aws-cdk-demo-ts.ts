@@ -18,6 +18,7 @@ import { AwsCdkDemoTsStackLambdaDynamoDB } from '../lib/dynamodb/aws-cdk-demo-ts
 import { AwsCdkDemoTsStackLambda } from '../lib/serveless/others/aws-cdk-demo-ts-stack-lambda';
 import { AwsCdkDemoTsStackLambdaBucket } from '../lib/serveless/others/aws-cdk-demo-ts-stack-lambda-s3';
 import { AwsCdkDemoTsStackLambdaGrant } from '../lib/serveless/grant/aws-cdk-demo-ts-stack-lambda-grant';
+import { AwsCdkDemoTsStackLambdaApi } from '../lib/serveless/api/aws-cdk-demo-ts-stack-lambda-api';
 
 const app = new cdk.App();
 
@@ -107,4 +108,10 @@ new AwsCdkDemoTsStackLambdaGrant(app, 'AwsCdkDemoTsStackLambdaGrant', {
     }
 });
 
+new AwsCdkDemoTsStackLambdaApi(app, 'AwsCdkDemoTsStackLambdaApi', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
 Tags.of(app).add('email', app.node.tryGetContext('envs').prod.email);
