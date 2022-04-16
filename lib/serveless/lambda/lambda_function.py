@@ -1,17 +1,16 @@
 
+from http import HTTPStatus
 import json
 import logging
 import os
+logger = logging.getLogger()
+logger.setLevel(level=os.getenv('LOG_LEVEL', 'DEBUG').upper())
 
 def lambda_handler(event, context):
-    global LOGGER
-    LOGGER =  logging.getLogger()
-    LOGGER.setLevel(level=os.getenv('LOG_LEVEL', 'DEBUG').upper())
-
-    LOGGER.info(f"received_event: {event}")
+    logger.info(f"received event: {event}")
 
     return {
-        "statusCode": 200,
+        "statusCode": HTTPStatus.OK.value,
         "body": json.dumps({
             "message": event
         })

@@ -13,7 +13,7 @@ export class AwsCdkDemoTsStackLambdaBucket extends Stack {
             bucketName: 'kons-bkt-v2'
         })
 
-        const funcion = new Function(this, 'AwsCdkDemoTsStackLambdaBucketFunction', {
+        const functionKons = new Function(this, 'AwsCdkDemoTsStackLambdaBucketFunction', {
             functionName: 'kons_function_v2',
             runtime: Runtime.PYTHON_3_7,
             handler: 'lambda_function.lambda_handler',
@@ -26,7 +26,7 @@ export class AwsCdkDemoTsStackLambdaBucket extends Stack {
         })
 
         new LogGroup(this, 'AwsCdkDemoTsStackLambdaBucketLG', {
-            logGroupName: '/aws/lambda/'.concat(funcion.functionName),
+            logGroupName: '/aws/lambda/'.concat(functionKons.functionName),
             removalPolicy: RemovalPolicy.DESTROY,
             retention: RetentionDays.FIVE_DAYS
         })
