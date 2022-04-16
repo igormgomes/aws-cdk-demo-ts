@@ -11,6 +11,7 @@ import { AwsCdkDemoTsStackSns } from "../lib/snssqs/aws-cdk-demo-ts-stack-sns";
 import { AwsCdkDemoTsStackDbbRd } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-rds';
 import { AwsCdkDemoTsStackDbVpc } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-vpc';
 import { AwsCdkDemoTsStackDbWebServer } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-web-server';
+import { AwsCdkDemoTsStackSqs } from '../lib/snssqs/aws-cdk-demo-ts-stack-sqs';
 
 const app = new cdk.App();
 
@@ -43,5 +44,19 @@ const database = new AwsCdkDemoTsStackDbbRd(app, 'AwsCdkDemoTsStackDbbRd', {
     }
 }, vpc.vpc, webserver.webServer.connections.securityGroups);
 database.addDependency(webserver)
+
+new AwsCdkDemoTsStackSns(app, 'AwsCdkDemoTsStackSns', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
+
+new AwsCdkDemoTsStackSqs(app, 'AwsCdkDemoTsStackSqs', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
 
 Tags.of(app).add('email', app.node.tryGetContext('envs').prod.email);
