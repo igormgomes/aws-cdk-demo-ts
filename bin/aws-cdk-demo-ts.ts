@@ -13,6 +13,7 @@ import { AwsCdkDemoTsStackDbVpc } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-v
 import { AwsCdkDemoTsStackDbWebServer } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-web-server';
 import { AwsCdkDemoTsStackSqs } from '../lib/snssqs/aws-cdk-demo-ts-stack-sqs';
 import { AwsCdkDemoTsStackLambda } from '../lib/serveless/aws-cdk-demo-ts-stack-lambda';
+import { AwsCdkDemoTsStackLambdaLog } from '../lib/serveless/aws-cdk-demo-ts-stack-lambda-log';
 
 const app = new cdk.App();
 
@@ -61,6 +62,13 @@ new AwsCdkDemoTsStackSqs(app, 'AwsCdkDemoTsStackSqs', {
 });
 
 new AwsCdkDemoTsStackLambda(app, 'AwsCdkDemoTsStackLambda', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
+
+new AwsCdkDemoTsStackLambdaLog(app, 'AwsCdkDemoTsStackLambdaLog', {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: process.env.CDK_DEFAULT_REGION
