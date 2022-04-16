@@ -12,11 +12,12 @@ import { AwsCdkDemoTsStackDbbRd } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-r
 import { AwsCdkDemoTsStackDbVpc } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-vpc';
 import { AwsCdkDemoTsStackDbWebServer } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-web-server';
 import { AwsCdkDemoTsStackSqs } from '../lib/snssqs/aws-cdk-demo-ts-stack-sqs';
-import { AwsCdkDemoTsStackLambda } from '../lib/serveless/aws-cdk-demo-ts-stack-lambda';
-import { AwsCdkDemoTsStackLambdaLog } from '../lib/serveless/aws-cdk-demo-ts-stack-lambda-log';
-import { AwsCdkDemoTsStackLambdaBucket } from '../lib/serveless/aws-cdk-demo-ts-stack-lambda-s3';
-import { AwsCdkDemoTsStackLambdaCron } from '../lib/serveless/aws-cdk-demo-ts-stack-lambda-cron';
+import { AwsCdkDemoTsStackLambdaLog } from '../lib/serveless/others/aws-cdk-demo-ts-stack-lambda-log';
+import { AwsCdkDemoTsStackLambdaCron } from '../lib/serveless/cron/aws-cdk-demo-ts-stack-lambda-cron';
 import { AwsCdkDemoTsStackLambdaDynamoDB } from '../lib/dynamodb/aws-cdk-demo-ts-stack-lambda-dynamodb';
+import { AwsCdkDemoTsStackLambda } from '../lib/serveless/others/aws-cdk-demo-ts-stack-lambda';
+import { AwsCdkDemoTsStackLambdaBucket } from '../lib/serveless/others/aws-cdk-demo-ts-stack-lambda-s3';
+import { AwsCdkDemoTsStackLambdaGrant } from '../lib/serveless/grant/aws-cdk-demo-ts-stack-lambda-grant';
 
 const app = new cdk.App();
 
@@ -93,6 +94,13 @@ new AwsCdkDemoTsStackLambdaCron(app, 'AwsCdkDemoTsStackLambdaCron', {
 });
 
 new AwsCdkDemoTsStackLambdaDynamoDB(app, 'AwsCdkDemoTsStackLambdaDynamoDB', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
+
+new AwsCdkDemoTsStackLambdaGrant(app, 'AwsCdkDemoTsStackLambdaGrant', {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: process.env.CDK_DEFAULT_REGION
