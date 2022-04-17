@@ -8,12 +8,12 @@ import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { KinesisEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
 
-export class AwsCdkDemoTsStackLambdaRestKinesis extends Stack {
+export class AwsCdkDemoTsStackLambdaKinesis extends Stack {
 
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
-        const streamPipeData = new Stream(this, 'AwsCdkDemoTsStackLambdaRestKinesisStream', {
+        const streamPipeData = new Stream(this, 'AwsCdkDemoTsStackLambdaKinesisStream', {
             retentionPeriod: Duration.hours(24),
             shardCount: 1,
             streamName: 'pipe_data'
@@ -23,7 +23,7 @@ export class AwsCdkDemoTsStackLambdaRestKinesis extends Stack {
             batchSize: 1
         });
 
-        const bucket = new Bucket(this, 'AwsCdkDemoTsStackLambdaRestKinesisBucket', {
+        const bucket = new Bucket(this, 'AwsCdkDemoTsStackLambdaKinesisBucket', {
             removalPolicy: RemovalPolicy.DESTROY
         });
         const policyStatement = new PolicyStatement({
@@ -38,7 +38,7 @@ export class AwsCdkDemoTsStackLambdaRestKinesis extends Stack {
         });
 
         const consumerLambdaFile = readFileSync('./lib/kinesis/stream_consumer_function.py', 'utf-8');
-        const consumerFunction = new Function(this, 'AwsCdkDemoTsStackLambdaRestKinesisConsumerFunction', {
+        const consumerFunction = new Function(this, 'AwsCdkDemoTsStackLambdaKinesisConsumerFunction', {
             functionName: 'stream_consumer_functioon',
             description: 'Consumer events',
             runtime: Runtime.PYTHON_3_7,
@@ -51,7 +51,7 @@ export class AwsCdkDemoTsStackLambdaRestKinesis extends Stack {
                 'BUCKET_NAME': bucket.bucketName,
             }
         })
-        new LogGroup(this, 'AwsCdkDemoTsStackLambdaRestKinesisConsumerFunctionLG', {
+        new LogGroup(this, 'AwsCdkDemoTsStackLambdaKinesisConsumerFunctionLG', {
             logGroupName: '/aws/lambda/'.concat(consumerFunction.functionName),
             removalPolicy: RemovalPolicy.DESTROY,
             retention: RetentionDays.ONE_DAY
@@ -62,7 +62,7 @@ export class AwsCdkDemoTsStackLambdaRestKinesis extends Stack {
         consumerFunction.addEventSource(kinesisEventSource)
         
         const producerLambdaFile = readFileSync('./lib/kinesis/stream_producer_function.py', 'utf-8');
-        const producerFunction = new Function(this, 'AwsCdkDemoTsStackLambdaRestKinesisProducerFunction', {
+        const producerFunction = new Function(this, 'AwsCdkDemoTsStackLambdaKinesisProducerFunction', {
             functionName: 'stream_producer_functioon',
             description: 'Producer events',
             runtime: Runtime.PYTHON_3_7,
@@ -75,7 +75,7 @@ export class AwsCdkDemoTsStackLambdaRestKinesis extends Stack {
                 'STREAM_NAME': streamPipeData.streamName,
             }
         })
-        new LogGroup(this, 'AwsCdkDemoTsStackLambdaRestKinesisProducerFunctionLG', {
+        new LogGroup(this, 'AwsCdkDemoTsStackLambdaKinesisProducerFunctionLG', {
             logGroupName: '/aws/lambda/'.concat(producerFunction.functionName),
             removalPolicy: RemovalPolicy.DESTROY,
             retention: RetentionDays.ONE_DAY

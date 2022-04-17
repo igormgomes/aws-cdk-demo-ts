@@ -26,7 +26,8 @@ import { AwsCdkDemoTsStackSite } from '../lib/site/aws-cdk-demo-ts-stack-site';
 import { AwsCdkDemoTsStackCloudFront } from '../lib/site/aws-cdk-demo-ts-stack-cloudfront';
 import { AwsCdkDemoTsStackS3Events } from '../lib/s3_events/aws-cdk-demo-ts-stack-s3-events';
 import { AwsCdkDemoTsStackLambdaRestApi } from '../lib/restapi/aws-cdk-demo-ts-stack-lambda-rest-api';
-import { AwsCdkDemoTsStackLambdaRestKinesis } from '../lib/kinesis/aws-cdk-demo-ts-stack-lambda-rest-kinesis';
+import { AwsCdkDemoTsStackLambdaKinesis } from '../lib/kinesis/aws-cdk-demo-ts-stack-lambda-kinesis';
+import { AwsCdkDemoTsStackDynamoDBStream } from '../lib/dynamodbstream/aws-cdk-demo-ts-stack-dynamodb-stream';
 
 const app = new cdk.App();
 
@@ -172,7 +173,14 @@ new AwsCdkDemoTsStackLambdaRestApi(app, 'AwsCdkDemoTsStackLambdaRestApi', {
     }
 });
 
-new AwsCdkDemoTsStackLambdaRestKinesis(app, 'AwsCdkDemoTsStackLambdaRestKinesis', {
+new AwsCdkDemoTsStackLambdaKinesis(app, 'AwsCdkDemoTsStackLambdaKinesis', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
+
+new AwsCdkDemoTsStackDynamoDBStream(app, 'AwsCdkDemoTsStackDynamoDBStream', {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: process.env.CDK_DEFAULT_REGION
