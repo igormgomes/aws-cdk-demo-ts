@@ -28,6 +28,7 @@ import { AwsCdkDemoTsStackLambdaRestApi } from '../lib/restapi/aws-cdk-demo-ts-s
 import { AwsCdkDemoTsStackLambdaKinesis } from '../lib/kinesis/aws-cdk-demo-ts-stack-lambda-kinesis';
 import { AwsCdkDemoTsStackDynamoDBStream } from '../lib/dynamodbstream/aws-cdk-demo-ts-stack-dynamodb-stream';
 import { AwsCdkDemoTsStackEcs } from '../lib/ecs/aws-cdk-demo-ts-stack-ecs';
+import { AwsCdkDemoTsStackEcsFargate } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate';
 
 const app = new cdk.App();
 
@@ -196,6 +197,13 @@ new AwsCdkDemoTsStackDynamoDBStream(app, 'AwsCdkDemoTsStackDynamoDBStream', {
 });
 
 new AwsCdkDemoTsStackEcs(app, 'AwsCdkDemoTsStackEcs', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
+
+new AwsCdkDemoTsStackEcsFargate(app, 'AwsCdkDemoTsStackEcsFargate', {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: process.env.CDK_DEFAULT_REGION
