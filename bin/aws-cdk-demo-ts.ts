@@ -11,11 +11,8 @@ import { AwsCdkDemoTsStackDbbRd } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-r
 import { AwsCdkDemoTsStackDbVpc } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-vpc';
 import { AwsCdkDemoTsStackDbWebServer } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-web-server';
 import { AwsCdkDemoTsStackSqs } from '../lib/snssqs/aws-cdk-demo-ts-stack-sqs';
-import { AwsCdkDemoTsStackLambdaLog } from '../lib/serveless/others/aws-cdk-demo-ts-stack-lambda-log';
 import { AwsCdkDemoTsStackLambdaCron } from '../lib/serveless/cron/aws-cdk-demo-ts-stack-lambda-cron';
 import { AwsCdkDemoTsStackLambdaDynamoDB } from '../lib/dynamodb/aws-cdk-demo-ts-stack-lambda-dynamodb';
-import { AwsCdkDemoTsStackLambda } from '../lib/serveless/others/aws-cdk-demo-ts-stack-lambda';
-import { AwsCdkDemoTsStackLambdaBucket } from '../lib/serveless/others/aws-cdk-demo-ts-stack-lambda-s3';
 import { AwsCdkDemoTsStackLambdaGrant } from '../lib/serveless/grant/aws-cdk-demo-ts-stack-lambda-grant';
 import { AwsCdkDemoTsStackLambdaApi } from '../lib/serveless/api/aws-cdk-demo-ts-stack-lambda-api';
 import { AwsCdkDemoTsStackLambdaAlarm } from '../lib/serveless/alarm/aws-cdk-demo-ts-stack-lambda-alarm';
@@ -31,6 +28,9 @@ import { AwsCdkDemoTsStackEcs } from '../lib/ecs/aws-cdk-demo-ts-stack-ecs';
 import { AwsCdkDemoTsStackEcsFargate } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate';
 import { AwsCdkDemoTsStackEcsFargateBatch } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate-batch';
 import { AwsCdkDemoTsStackEcsFargateChat } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate-chat';
+import { AwsCdkDemoTsStackLambda } from '../lib/serveless/lambda/aws-cdk-demo-ts-stack-lambda';
+import { AwsCdkDemoTsStackLambdaLog } from '../lib/serveless/lambda/aws-cdk-demo-ts-stack-lambda-log';
+import { AwsCdkDemoTsStackLambdaBucket } from '../lib/serveless/lambda/aws-cdk-demo-ts-stack-lambda-s3';
 
 const app = new cdk.App();
 
