@@ -21,19 +21,16 @@ export class AwsCdkDemoTsStackEcs extends Stack {
             instanceType: new InstanceType('t2.micro')
         })
 
-        const applicationLoadBalancer = new ApplicationLoadBalancedEc2Service(this, 'AwsCdkDemoTsStackEcsApplicationLoadBalancedEc2Service', {
+        const applicationLoadBalancedEc2Service = new ApplicationLoadBalancedEc2Service(this, 'AwsCdkDemoTsStackEcsApplicationLoadBalancedEc2Service', {
             cluster: cluster,
             memoryReservationMiB: 512,
             taskImageOptions: {
-                image: ContainerImage.fromRegistry('igormgomes/nginx-test'),
-                environment: {
-                    'ENVIRONMENT': 'PROD'
-                }
+                image: ContainerImage.fromRegistry('igormgomes/nginx-test')
             }
         });
 
         new CfnOutput(this, 'AwsCdkDemoTsStackEcsCfnOutput', {
-            value: applicationLoadBalancer.loadBalancer.loadBalancerDnsName
+            value: applicationLoadBalancedEc2Service.loadBalancer.loadBalancerDnsName
         })
     }
 }

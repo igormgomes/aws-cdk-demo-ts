@@ -6,7 +6,7 @@ export class AwsCdkDemoTsStackLambdaDynamoDB extends Stack {
 
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
-
+        
         new Table(this, 'AwsCdkDemoTsStackLambdaDynamoDBTable', {
             tableName: 'kons',
             partitionKey: {

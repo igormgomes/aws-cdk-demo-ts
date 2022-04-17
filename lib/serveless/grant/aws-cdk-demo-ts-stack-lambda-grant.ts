@@ -21,7 +21,6 @@ export class AwsCdkDemoTsStackLambdaGrant extends Stack {
         })
 
         const file = readFileSync('./lib/serveless/grant/lambda_function.py', 'utf-8');
-
         const functionKons = new Function(this, 'AwsCdkDemoTsStackLambdaGrantFunction', {
             functionName: 'kons_function',
             runtime: Runtime.PYTHON_3_7,
@@ -34,8 +33,7 @@ export class AwsCdkDemoTsStackLambdaGrant extends Stack {
                 'TABLE_NAME': table.tableName
             }
         })
-
-        new LogGroup(this, 'AwsCdkDemoTsStackLambdaGrantFunctionLG', {
+        new LogGroup(this, 'AwsCdkDemoTsStackLambdaGrantLogGroup', {
             logGroupName: '/aws/lambda/'.concat(functionKons.functionName),
             removalPolicy: RemovalPolicy.DESTROY
         })

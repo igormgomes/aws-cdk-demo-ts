@@ -26,7 +26,7 @@ export class AwsCdkDemoTsStackDbWebServer extends Stack {
             storage: AmazonLinuxStorage.GENERAL_PURPOSE
         })
 
-        const alb = new ApplicationLoadBalancer(this, "appId", {
+        const alb = new ApplicationLoadBalancer(this, "AwsCdkDemoTsStackDbWebServerApplicationLoadBalancer", {
             vpc: vpc,
             internetFacing: true,
             loadBalancerName: 'WebServerAlb'
@@ -38,7 +38,7 @@ export class AwsCdkDemoTsStackDbWebServer extends Stack {
             open: true
         })
 
-        const role = new Role(this, 'access on ALB Port 80', {
+        const role = new Role(this, 'AwsCdkDemoTsStackDbWebServerRole', {
             assumedBy: new ServicePrincipal('ec2.amazonaws.com'),
             managedPolicies: [
                 ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'),
@@ -46,7 +46,7 @@ export class AwsCdkDemoTsStackDbWebServer extends Stack {
             ]
         })
 
-        const webServer = new AutoScalingGroup(this, 'webServerAsgId', {
+        const webServer = new AutoScalingGroup(this, 'AwsCdkDemoTsStackDbWebServerAutoScalingGroup', {
             vpc: vpc,
             vpcSubnets: { subnetType: ec2.SubnetType.PUBLIC },
             instanceType: new InstanceType('t2.micro'),
@@ -61,12 +61,12 @@ export class AwsCdkDemoTsStackDbWebServer extends Stack {
 
         this.webServer = webServer
 
-        listener.addTargets('listenerId', {
+        listener.addTargets('AwsCdkDemoTsStackDbWebServerListener', {
             port: 80,
             targets: [webServer]
         })
 
-        new CfnOutput(this, 'albDomainName', {
+        new CfnOutput(this, 'AwsCdkDemoTsStackDbWebServerCfnOutput', {
             value: 'http://' + alb.loadBalancerDnsName
         })
     }

@@ -39,17 +39,14 @@ export class AwsCdkDemoTsStackS3Events extends Stack {
                 'DDB_TABLE_NAME': table.tableName
             }
         })
-        const logGroup = new LogGroup(this, 'AwsCdkDemoTsStackS3EventsLG', {
+        new LogGroup(this, 'AwsCdkDemoTsStackS3EventsLG', {
             logGroupName: '/aws/lambda/'.concat(functionProcess.functionName),
             removalPolicy: RemovalPolicy.DESTROY,
             retention: RetentionDays.ONE_DAY
         });
+        const lambdaDestination = new LambdaDestination(functionProcess)
 
         table.grantReadWriteData(functionProcess)
-
-        const lambdaDestination = new LambdaDestination(functionProcess)
-        
         bucket.addEventNotification(EventType.OBJECT_CREATED, lambdaDestination)
-
     }
 }

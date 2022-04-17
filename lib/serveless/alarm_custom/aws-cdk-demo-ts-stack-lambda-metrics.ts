@@ -24,7 +24,7 @@ export class AwsCdkDemoTsStackLambdaMetrics extends Stack {
             }
         })
 
-        const logGroup = new LogGroup(this, 'AwsCdkDemoTsStackLambdaMetricsLG', {
+        const logGroup = new LogGroup(this, 'AwsCdkDemoTsStackLambdaMetricsLogGroup', {
             logGroupName: '/aws/lambda/'.concat(functionKons.functionName),
             removalPolicy: RemovalPolicy.DESTROY
         });

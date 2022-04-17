@@ -34,7 +34,7 @@ export class AwsCdkDemoTsStackDynamoDBStream extends Stack {
                 'LOG_LEVEL': 'DEBUG'
             }
         })
-        new LogGroup(this, 'AwsCdkDemoTsStackDynamoDBStreamFunctionLGs', {
+        new LogGroup(this, 'AwsCdkDemoTsStackDynamoDBStreamFunctionLG', {
             logGroupName: '/aws/lambda/'.concat(streamFunction.functionName),
             removalPolicy: RemovalPolicy.DESTROY,
             retention: RetentionDays.ONE_DAY

@@ -39,6 +39,5 @@ export class AwsCdkDemoTsStackDbVpc extends Stack {
             value: vpc.vpcId,
             exportName: 'customDbVpcId'
         })
-
     }
 }

@@ -50,9 +50,9 @@ export class AwsCdkDemoTsStackDbbRd extends Stack {
             database.connections.allowDefaultPortFrom(securtiGroup, 'Allow EC2 ASG')
         }
 
-        new CfnOutput(this, 'DatabaseCommand', {
+        new CfnOutput(this, 'AwsCdkDemoTsStackDbbRdCfnOutput', {
             value: 'mysql -h '.concat(database.dbInstanceEndpointAddress).concat(' -P 3306 -u ').concat(credentials.username).concat(' -p'),
-            description: 'connect to the database'
+            description: 'Command for connect to database'
         })
     }
 }

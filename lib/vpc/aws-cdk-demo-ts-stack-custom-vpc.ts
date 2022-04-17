@@ -1,4 +1,4 @@
-import { CfnOutput, RemovalPolicy, Stack, StackProps, Tag, Tags } from 'aws-cdk-lib';
+import { CfnOutput, RemovalPolicy, Stack, StackProps, Tags } from 'aws-cdk-lib';
 import { Vpc } from 'aws-cdk-lib/aws-ec2';
 import { aws_ec2 as ec2 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
@@ -10,8 +10,7 @@ export class AwsCdkDemoTsStackCustomVpc extends Stack {
         super(scope, id, props);
 
         const configs = scope.node.tryGetContext('envs').prod;
-
-        const vpc = new ec2.Vpc(this, 'AwsCdkDemoTsStackVpc', {
+        const vpc = new Vpc(this, 'AwsCdkDemoTsStackCustomVpcVpc', {
             cidr: configs.vpc_configs.vpc_cidr,
             maxAzs: 2,
             natGateways: 1,
@@ -34,7 +33,7 @@ export class AwsCdkDemoTsStackCustomVpc extends Stack {
             ]
         })
 
-        const bucket = new Bucket(this, 'AwsCdkDemoTsStackBucket', {
+        const bucket = new Bucket(this, 'AwsCdkDemoTsStackCustomVpcBucket', {
             removalPolicy: RemovalPolicy.DESTROY
         });
 
@@ -44,7 +43,7 @@ export class AwsCdkDemoTsStackCustomVpc extends Stack {
         Tags.of(vpc).add('owner', 'igor', {
         });
 
-        new CfnOutput(this, 'AwsCdkDemoTsStackCfn', {
+        new CfnOutput(this, 'AwsCdkDemoTsStackCustomVpcCfnOutput', {
             value: vpc.vpcId,
             exportName: 'customVpcId'
         })

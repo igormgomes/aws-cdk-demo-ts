@@ -11,9 +11,6 @@ export class AwsCdkDemoTsStackCloudFront extends Stack {
 
         const bucket = new Bucket(this, 'AwsCdkDemoTsStackCloudFrontBucket', {
             versioned: true,
-            //publicReadAccess: true,
-            //websiteIndexDocument: 'index.html',
-            //websiteErrorDocument: '404.html',
             removalPolicy: RemovalPolicy.DESTROY
         });
 

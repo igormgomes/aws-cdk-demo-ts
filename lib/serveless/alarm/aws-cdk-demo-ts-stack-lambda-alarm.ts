@@ -76,7 +76,7 @@ export class AwsCdkDemoTsStackLambdaAlarm extends Stack {
             period: Duration.minutes(5)
         });
 
-        const cpuAlarm = new Alarm(this, 'AwsCdkDemoTsStackLambdaCpuAlarm', {
+        const cpuAlarm = new Alarm(this, 'AwsCdkDemoTsStackLambdaAlarmCPU', {
             alarmDescription: 'Alert if CPU is ..',
             alarmName: 'low-cpu-alarm',
             actionsEnabled: true,
@@ -89,7 +89,7 @@ export class AwsCdkDemoTsStackLambdaAlarm extends Stack {
         });
         cpuAlarm.addAlarmAction(new SnsAction(topic))
 
-        const lambbdAlarm = new Alarm(this, 'AwsCdkDemoTsStackLambdaLAlarm', {
+        const lambbdAlarm = new Alarm(this, 'AwsCdkDemoTsStackLambdaAlarmMetricLambda', {
             alarmDescription: 'Alert if Lambda ..',
             alarmName: 'lambda-alarm',
             metric: functionKons.metricErrors(),

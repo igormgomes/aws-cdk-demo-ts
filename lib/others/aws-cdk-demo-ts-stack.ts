@@ -10,7 +10,7 @@ export class AwsCdkDemoTsStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
-        new s3.Bucket(this, 'AwsCdkDemoTsBucket', {
+        new s3.Bucket(this, 'AwsCdkDemoTsStackBucket', {
             bucketName: 'aws-cdk-demo-ts-bucket',
             versioned: true,
             removalPolicy: RemovalPolicy.DESTROY,
@@ -20,9 +20,9 @@ export class AwsCdkDemoTsStack extends Stack {
 
         new iam.Group(this, 'AwsCdkDemoTsIAMGroup');
 
-        const bucketDemo2 = new s3.Bucket(this, 'AwsCdkDemoTsBucket2', {});
-        new CfnOutput(this, 'AwsCdkDemoTsBucketoOutput', {
-            value: bucketDemo2.bucketName,
+        const bucket = new s3.Bucket(this, 'AwsCdkDemoTsStackBucket2');
+        new CfnOutput(this, 'AwsCdkDemoTsStackBucketCfnOutput', {
+            value: bucket.bucketName,
             description: 'Bucket2 name',
             exportName: 'AwsCdkDemoTsBucket2Name'
         });

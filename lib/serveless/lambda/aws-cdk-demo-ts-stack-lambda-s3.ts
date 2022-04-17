@@ -24,8 +24,7 @@ export class AwsCdkDemoTsStackLambdaBucket extends Stack {
                 'LOG_LEVEL': 'INFO'
             }
         })
-
-        new LogGroup(this, 'AwsCdkDemoTsStackLambdaBucketLG', {
+        new LogGroup(this, 'AwsCdkDemoTsStackLambdaBucketLogGroup', {
             logGroupName: '/aws/lambda/'.concat(functionKons.functionName),
             removalPolicy: RemovalPolicy.DESTROY,
             retention: RetentionDays.FIVE_DAYS

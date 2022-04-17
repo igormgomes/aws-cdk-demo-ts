@@ -8,33 +8,33 @@ export class AwsCdkDemoTsStackSecret extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
-        const param1 = new StringParameter(this, 'AwsCdkDemoTsStackSecretSSM1', {
+        const ofConcurrentsUsersParameter = new StringParameter(this, 'AwsCdkDemoTsStackSecretStringParameterNoOfConcurrentsUsers', {
             description: 'Load testing configuration',
             parameterName: 'NoOfConcurrentsUsers',
             stringValue: '100',
             tier: ParameterTier.STANDARD,
         });
 
-        const param2 = new StringParameter(this, 'AwsCdkDemoTsStackSecretSSM2', {
+        const configOfConcurrentsUsersParameter = new StringParameter(this, 'AwsCdkDemoTsStackSecretStringParameterConfigNoOfConcurrentsUsers', {
             description: 'Load testing configuration',
             parameterName: '/img/configs/NoOfConcurrentsUsers',
             stringValue: '100',
             tier: ParameterTier.STANDARD,
         });
 
-        const param3 = new StringParameter(this, 'AwsCdkDemoTsStackSecretSSM3', {
+        const durationParameter = new StringParameter(this, 'AwsCdkDemoTsStackSecretStringParameterDuration', {
             description: 'Load testing configuration',
             parameterName: '/img/configs/DurationInSec',
             stringValue: '300',
             tier: ParameterTier.STANDARD,
         });
 
-        const secret1 = new Secret(this, 'AwsCdkDemoTsStackSecretSecret', {
+        const customerdbSecret = new Secret(this, 'AwsCdkDemoTsStackSecretCustomerDB', {
             description: 'Customer DB password',
             secretName: 'cust_db_pass'
         })
 
-        const secret2 = new Secret(this, 'AwsCdkDemoTsStackSecretSecret2', {
+        const userSecret = new Secret(this, 'AwsCdkDemoTsStackSecretUser', {
             description: 'Template secret for user',
             secretName: 'user_attribbutes',
             generateSecretString: {
@@ -43,13 +43,13 @@ export class AwsCdkDemoTsStackSecret extends Stack {
             }
         })
 
-        new CfnOutput(this, 'AwsCdkDemoTsStackSecretCFN', {
-            value: param1.stringValue,
+        new CfnOutput(this, 'AwsCdkDemoTsStackSecretCfnOutputParam', {
+            value: ofConcurrentsUsersParameter.stringValue,
             exportName: 'customVpcId'
         })
 
-        new CfnOutput(this, 'AwsCdkDemoTsStackSecretCFNPassword', {
-            value: secret1.secretName,
+        new CfnOutput(this, 'AwsCdkDemoTsStackSecretCfnOutputPassword', {
+            value: customerdbSecret.secretName,
             exportName: 'password'
         })
     }

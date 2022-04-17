@@ -18,7 +18,7 @@ export class AwsCdkDemoTsStackProfile extends Stack {
                 blockPublicAccess: BlockPublicAccess.BLOCK_ALL
             });
         } else {
-            new s3.Bucket(this, 'AwsCdkDemoTsStackProfileDevProd', {
+            new s3.Bucket(this, 'AwsCdkDemoTsStackProfileProd', {
                 removalPolicy: RemovalPolicy.DESTROY
             });
         }

@@ -35,7 +35,7 @@ export class AwsCdkDemoTsStackEcsFargate extends Stack {
             path: '/'
         })
 
-        new CfnOutput(this, 'AwsCdkDemoTsStackEcsCfnOutput', {
+        new CfnOutput(this, 'AwsCdkDemoTsStackEcsFargateCfnOutput', {
             value: applicationLoadBalancedFargateService.loadBalancer.loadBalancerDnsName
         })
     }

@@ -11,7 +11,6 @@ export class AwsCdkDemoTsStackLambdaApi extends Stack {
         super(scope, id, props);
 
         const file = readFileSync('./lib/serveless/api/lambda_function.py', 'utf-8');
-
         const functionKons = new Function(this, 'AwsCdkDemoTsStackLambdaApiFunction', {
             functionName: 'kons_function',
             runtime: Runtime.PYTHON_3_7,
@@ -23,8 +22,7 @@ export class AwsCdkDemoTsStackLambdaApi extends Stack {
                 'LOG_LEVEL': 'INFO'
             }
         })
-
-        new LogGroup(this, 'AwsCdkDemoTsStackLambdaApiLG', {
+        new LogGroup(this, 'AwsCdkDemoTsStackLambdaApiLogGroup', {
             logGroupName: '/aws/lambda/'.concat(functionKons.functionName),
             removalPolicy: RemovalPolicy.DESTROY
         })

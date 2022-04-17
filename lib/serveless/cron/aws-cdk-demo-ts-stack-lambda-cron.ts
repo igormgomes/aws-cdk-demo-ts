@@ -25,6 +25,10 @@ export class AwsCdkDemoTsStackLambdaCron extends Stack {
                 'AUTOMATION': 'SKON'
             }
         })
+        new LogGroup(this, 'AwsCdkDemoTsStackLambdaCronLogGroup', {
+            logGroupName: '/aws/lambda/'.concat(functionKons.functionName),
+            removalPolicy: RemovalPolicy.DESTROY
+        })
 
         const rule = new Rule(this, 'AwsCdkDemoTsStackLambdaCronRule', {
             schedule: Schedule.cron({
@@ -35,16 +39,11 @@ export class AwsCdkDemoTsStackLambdaCron extends Stack {
                 year: '*'
             })
         })
-        rule.addTarget(new LambdaFunction(functionKons))
-
         const ruleRate = new Rule(this, 'AwsCdkDemoTsStackLambdaCronRuleRate', {
             schedule: Schedule.rate(Duration.minutes(3))
         })
-        ruleRate.addTarget(new LambdaFunction(functionKons))
 
-        new LogGroup(this, 'AwsCdkDemoTsStackLambdaCronLogGroup', {
-            logGroupName: '/aws/lambda/'.concat(functionKons.functionName),
-            removalPolicy: RemovalPolicy.DESTROY
-        })
+        rule.addTarget(new LambdaFunction(functionKons))
+        ruleRate.addTarget(new LambdaFunction(functionKons))
     }
 }

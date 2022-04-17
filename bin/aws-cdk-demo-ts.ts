@@ -30,7 +30,7 @@ import { AwsCdkDemoTsStackDynamoDBStream } from '../lib/dynamodbstream/aws-cdk-d
 import { AwsCdkDemoTsStackEcs } from '../lib/ecs/aws-cdk-demo-ts-stack-ecs';
 import { AwsCdkDemoTsStackEcsFargate } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate';
 import { AwsCdkDemoTsStackEcsFargateBatch } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate-batch';
-import { AwsCdkDemoTsStackEcsFargateChat } from '../lib/chat/aws-cdk-demo-ts-stack-ecs-fargate-chat';
+import { AwsCdkDemoTsStackEcsFargateChat } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate-chat';
 
 const app = new cdk.App();
 

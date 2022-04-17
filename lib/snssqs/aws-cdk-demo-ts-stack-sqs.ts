@@ -15,6 +15,5 @@ export class AwsCdkDemoTsStackSqs extends Stack {
             retentionPeriod: Duration.days(4),
             visibilityTimeout: Duration.seconds(300),
         });
-   
     }
 }

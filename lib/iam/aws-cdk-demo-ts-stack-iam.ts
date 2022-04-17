@@ -14,20 +14,20 @@ export class AwsCdkDemoTsStackIAM extends Stack {
             secretName: 'user1_pass'
         })
 
-        const user1 = new User(this, 'AwsCdkDemoTsStackIAMUsser1', {
+        const johnUser = new User(this, 'AwsCdkDemoTsStackIAMUserJohn', {
             password: user1Pass.secretValue,
-            userName: 'user1'
+            userName: 'john'
         })
 
-        const user2 = new User(this, 'AwsCdkDemoTsStackIAMUser2', {
+        const joeUser = new User(this, 'AwsCdkDemoTsStackIAMUserJoe', {
             password: SecretValue.plainText('Dont-Use-B@D-Passw0rds'),
-            userName: 'user2'
+            userName: 'joe'
         })
 
         const groupKon = new Group(this, 'AwsCdkDemoTsStackIAMGroup', {
             groupName: 'konstone_group'
         })
-        groupKon.addUser(user1)
+        groupKon.addUser(johnUser)
 
         groupKon.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName('AmazonS3ReadOnlyAccess'))
 
@@ -48,14 +48,13 @@ export class AwsCdkDemoTsStackIAM extends Stack {
         param1.grantRead(groupKon)
 
         const policyStatement = new PolicyStatement({
+            sid: 'DescribeAllParametersInConsole',
             effect: Effect.ALLOW,
             resources: ["*"],
             actions: [
                 "ssm:DescribeParameters"
             ]
         })
-        policyStatement.sid = 'DescribeAllParametersInConsole'
-
         groupKon.addToPolicy(policyStatement)
 
         const konRole = new Role(this, 'AwsCdkDemoTsStackIAMRole', {
@@ -83,7 +82,7 @@ export class AwsCdkDemoTsStackIAM extends Stack {
         })
 
 
-        new CfnOutput(this, 'AwsCdkDemoTsStackIAMLogin', {
+        new CfnOutput(this, 'AwsCdkDemoTsStackIAMCfnOutput', {
             description: 'LoginUrl for user2',
             value: 'http://'.concat(Stack.of(this).account).concat('.signin.aws.amazon.com/console')
         })

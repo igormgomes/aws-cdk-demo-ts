@@ -34,7 +34,7 @@ export class AwsCdkDemoTsStackLambdaRestApi extends Stack {
                 'TABLE_NAME': table.tableName
             }
         })
-        new LogGroup(this, 'AwsCdkDemoTsStackLambdaRestApiLG', {
+        new LogGroup(this, 'AwsCdkDemoTsStackLambdaRestApiLogGroup', {
             logGroupName: '/aws/lambda/'.concat(functionProcess.functionName),
             removalPolicy: RemovalPolicy.DESTROY,
             retention: RetentionDays.ONE_DAY
