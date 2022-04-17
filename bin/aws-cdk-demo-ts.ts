@@ -30,6 +30,7 @@ import { AwsCdkDemoTsStackDynamoDBStream } from '../lib/dynamodbstream/aws-cdk-d
 import { AwsCdkDemoTsStackEcs } from '../lib/ecs/aws-cdk-demo-ts-stack-ecs';
 import { AwsCdkDemoTsStackEcsFargate } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate';
 import { AwsCdkDemoTsStackEcsFargateBatch } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate-batch';
+import { AwsCdkDemoTsStackEcsFargateChat } from '../lib/chat/aws-cdk-demo-ts-stack-ecs-fargate-chat';
 
 const app = new cdk.App();
 
@@ -217,5 +218,13 @@ new AwsCdkDemoTsStackEcsFargateBatch(app, 'AwsCdkDemoTsStackEcsFargateBatch', {
         region: process.env.CDK_DEFAULT_REGION
     }
 });
+
+new AwsCdkDemoTsStackEcsFargateChat(app, 'AwsCdkDemoTsStackEcsFargateChat', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
+
 
 Tags.of(app).add('email', app.node.tryGetContext('envs').prod.email);
