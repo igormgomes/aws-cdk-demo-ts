@@ -23,6 +23,7 @@ import { AwsCdkDemoTsStackLambdaAlarm } from '../lib/serveless/alarm/aws-cdk-dem
 import { AwsCdkDemoTsStackLambdaMetrics } from '../lib/serveless/alarm_custom/aws-cdk-demo-ts-stack-lambda-metrics';
 import { AwsCdkDemoTsStackLambdaDashboard } from '../lib/serveless/dashboard/aws-cdk-demo-ts-stack-lambda-dashboard';
 import { AwsCdkDemoTsStackSite } from '../lib/site/aws-cdk-demo-ts-stack-site';
+import { AwsCdkDemoTsStackCloudFront } from '../lib/site/aws-cdk-demo-ts-stack-cloudfront';
 
 const app = new cdk.App();
 
@@ -141,6 +142,13 @@ new AwsCdkDemoTsStackLambdaDashboard(app, 'AwsCdkDemoTsStackLambdaDashboard', {
 });
 
 new AwsCdkDemoTsStackSite(app, 'AwsCdkDemoTsStackSite', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
+
+new AwsCdkDemoTsStackCloudFront(app, 'AwsCdkDemoTsStackCloudFront', {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: process.env.CDK_DEFAULT_REGION
