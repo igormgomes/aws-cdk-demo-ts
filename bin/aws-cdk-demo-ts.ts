@@ -29,6 +29,7 @@ import { AwsCdkDemoTsStackLambdaKinesis } from '../lib/kinesis/aws-cdk-demo-ts-s
 import { AwsCdkDemoTsStackDynamoDBStream } from '../lib/dynamodbstream/aws-cdk-demo-ts-stack-dynamodb-stream';
 import { AwsCdkDemoTsStackEcs } from '../lib/ecs/aws-cdk-demo-ts-stack-ecs';
 import { AwsCdkDemoTsStackEcsFargate } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate';
+import { AwsCdkDemoTsStackEcsFargateBatch } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate-batch';
 
 const app = new cdk.App();
 
@@ -204,6 +205,13 @@ new AwsCdkDemoTsStackEcs(app, 'AwsCdkDemoTsStackEcs', {
 });
 
 new AwsCdkDemoTsStackEcsFargate(app, 'AwsCdkDemoTsStackEcsFargate', {
+    env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
+    }
+});
+
+new AwsCdkDemoTsStackEcsFargateBatch(app, 'AwsCdkDemoTsStackEcsFargateBatch', {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: process.env.CDK_DEFAULT_REGION
