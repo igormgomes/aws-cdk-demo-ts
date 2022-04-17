@@ -1,7 +1,3 @@
-# Welcome to your CDK TypeScript project
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
 ## Useful commands
 
 * `npm run build`       compile typescript to js
