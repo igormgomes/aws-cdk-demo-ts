@@ -9,8 +9,4 @@ sudo chkconfig httpd on
 sudo service httpd start
 sudo yum install -y mysql57 curl
 
-# Ping github
 curl "https://github.com/igormgomes"
-
-# To Connect to DB
-# mysql -u {User_name} -p -h {RDS_End_Point} {DB_NAME}

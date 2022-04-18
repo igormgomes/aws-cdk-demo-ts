@@ -7,9 +7,9 @@ import { AwsCdkDemoTsStackPolicy } from '../lib/policy/aws-cdk-demo-ts-stack-pol
 import { AwsCdkDemoTsStackProfile } from '../lib/profile/aws-cdk-demo-ts-stack-profile';
 import { AwsCdkDemoTsStackSecret } from '../lib/secret/aws-cdk-demo-ts-stack-secret';
 import { AwsCdkDemoTsStackSns } from "../lib/snssqs/aws-cdk-demo-ts-stack-sns";
-import { AwsCdkDemoTsStackDbbRd } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-rds';
-import { AwsCdkDemoTsStackDbVpc } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-vpc';
-import { AwsCdkDemoTsStackDbWebServer } from '../lib/dbdata/aws-cdk-demo-ts-stack-db-web-server';
+import { AwsCdkDemoTsStackDbbRd } from '../lib/rds/aws-cdk-demo-ts-stack-db-rds';
+import { AwsCdkDemoTsStackDbVpc } from '../lib/rds/aws-cdk-demo-ts-stack-db-vpc';
+import { AwsCdkDemoTsStackDbWebServer } from '../lib/rds/aws-cdk-demo-ts-stack-db-web-server';
 import { AwsCdkDemoTsStackSqs } from '../lib/snssqs/aws-cdk-demo-ts-stack-sqs';
 import { AwsCdkDemoTsStackLambdaCron } from '../lib/serveless/cron/aws-cdk-demo-ts-stack-lambda-cron';
 import { AwsCdkDemoTsStackLambdaDynamoDB } from '../lib/dynamodb/aws-cdk-demo-ts-stack-lambda-dynamodb';
