@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
 import { Tags } from 'aws-cdk-lib';
-import { AwsCdkDemoTsStack } from '../lib/others/aws-cdk-demo-ts-stack';
 import { AwsCdkDemoTsStackIAM } from '../lib/iam/aws-cdk-demo-ts-stack-iam';
 import { AwsCdkDemoTsStackPolicy } from '../lib/policy/aws-cdk-demo-ts-stack-policy';
-import { AwsCdkDemoTsStackProfile } from '../lib/profile/aws-cdk-demo-ts-stack-profile';
 import { AwsCdkDemoTsStackSecret } from '../lib/secret/aws-cdk-demo-ts-stack-secret';
 import { AwsCdkDemoTsStackSns } from "../lib/snssqs/aws-cdk-demo-ts-stack-sns";
 import { AwsCdkDemoTsStackDbbRd } from '../lib/rds/aws-cdk-demo-ts-stack-db-rds';
@@ -28,26 +26,10 @@ import { AwsCdkDemoTsStackEcs } from '../lib/ecs/aws-cdk-demo-ts-stack-ecs';
 import { AwsCdkDemoTsStackEcsFargate } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate';
 import { AwsCdkDemoTsStackEcsFargateBatch } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate-batch';
 import { AwsCdkDemoTsStackEcsFargateChat } from '../lib/ecsfargate/aws-cdk-demo-ts-stack-ecs-fargate-chat';
-import { AwsCdkDemoTsStackLambda } from '../lib/serveless/lambda/aws-cdk-demo-ts-stack-lambda';
 import { AwsCdkDemoTsStackLambdaLog } from '../lib/serveless/lambda/aws-cdk-demo-ts-stack-lambda-log';
 import { AwsCdkDemoTsStackLambdaBucket } from '../lib/serveless/lambda/aws-cdk-demo-ts-stack-lambda-s3';
 
 const app = new cdk.App();
-
-new AwsCdkDemoTsStack(app, 'AwsCdkDemoTsStack', {
-    env: {
-        account: process.env.CDK_DEFAULT_ACCOUNT,
-        region: app.node.tryGetContext('envs').dev.region
-    }
-});
-
-
-new AwsCdkDemoTsStackProfile(app, 'AwsCdkDemoTsStackProfileDev', false, {
-    env: {
-        account: process.env.CDK_DEFAULT_ACCOUNT,
-        region: app.node.tryGetContext('envs').dev.region
-    }
-});
 
 const vpc = new AwsCdkDemoTsStackDbVpc(app, 'AwsCdkDemoTsStackDbVpc', {
     env: {
@@ -80,13 +62,6 @@ new AwsCdkDemoTsStackSns(app, 'AwsCdkDemoTsStackSns', {
 });
 
 new AwsCdkDemoTsStackSqs(app, 'AwsCdkDemoTsStackSqs', {
-    env: {
-        account: process.env.CDK_DEFAULT_ACCOUNT,
-        region: process.env.CDK_DEFAULT_REGION
-    }
-});
-
-new AwsCdkDemoTsStackLambda(app, 'AwsCdkDemoTsStackLambda', {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: process.env.CDK_DEFAULT_REGION

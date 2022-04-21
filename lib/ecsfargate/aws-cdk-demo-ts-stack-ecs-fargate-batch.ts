@@ -30,7 +30,7 @@ export class AwsCdkDemoTsStackEcsFargateBatch extends Stack {
                     'REDIS_PORT': '6379'
                 }
             },
-            schedule: Schedule.expression('rate(2 minutes)')
+            schedule: Schedule.expression('rate(15 minutes)')
         })
     }
 }

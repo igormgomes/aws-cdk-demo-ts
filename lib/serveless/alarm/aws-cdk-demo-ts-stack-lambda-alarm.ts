@@ -62,8 +62,7 @@ export class AwsCdkDemoTsStackLambdaAlarm extends Stack {
             timeout: Duration.seconds(3),
             reservedConcurrentExecutions: 1,
             environment: {
-                'LOG_LEVEL': 'INFO',
-                'AUTOMATION': 'SKON'
+                'LOG_LEVEL': 'INFO'
             }
         })
 
